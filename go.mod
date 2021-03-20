@@ -1,4 +1,4 @@
-module github.com/ScuderiaCoin/MinerProgram
+module github.com/ScuderiaScottiTech/ScuderiaCoinMiner
 
 go 1.16
 
