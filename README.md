@@ -28,7 +28,7 @@ Usage of ./ScuderiaCoinMiner:
 ### Example usage
 
 ```bash
-./ScuderiaCoinMiner -api https://mineapi.scuderia.tech/ -ratecounter -id 12341234123412 -goroutines 6
+./ScuderiaCoinMiner -api https://mineapi.scuderia.tech -ratecounter -id <tuoid> -goroutines 6
 ```
 
 Example output:
