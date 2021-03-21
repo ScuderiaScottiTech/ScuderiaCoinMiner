@@ -15,6 +15,7 @@ var (
 	minerid            = flag.String("id", "", "YOUR telegram ID")
 	goroutines         = flag.Int("goroutines", 1, "Number of goroutines to mine onto")
 	ratecounterenabled = flag.Bool("ratecounter", false, "Rate counter enabled (may degrade performance)")
+	testMode           = flag.Bool("testmode", false, "Test your hash rate without the use of an API")
 )
 
 var hashCounter *ratecounter.RateCounter
@@ -58,7 +59,7 @@ func main() {
 
 	flag.Parse()
 
-	if *mineapi == "" || *minerid == "" {
+	if (*mineapi == "" || *minerid == "") && !*testMode { // ignore checks if in test mode
 		panic("--help for help")
 	}
 

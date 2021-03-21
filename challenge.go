@@ -33,9 +33,23 @@ func GetMiningData() ChallengeApiResponse {
 	return *apiResponse
 }
 
+func GetFakeMiningData() ChallengeApiResponse {
+	return ChallengeApiResponse{
+		ChallengeString: "123test123test",
+		Reward:          100,
+		Difficulty:      7,
+	}
+}
+
 func RefreshCurrentChallenge() {
 	fmt.Print("Getting new challenge info: ")
-	currentChallenge = GetMiningData()
+
+	if *testMode {
+		currentChallenge = GetFakeMiningData()
+	} else {
+		currentChallenge = GetMiningData()
+	}
+
 	fmt.Println("Random:", currentChallenge.ChallengeString, "Difficulty:", currentChallenge.Difficulty, "Reward:", currentChallenge.Reward)
 }
 
@@ -63,8 +77,12 @@ func PeriodicChallengeRefresher() {
 
 func PostChallengeResult(magic string, telegramid string) bool {
 	response, err := http.Get(*mineapi + "/mine/resultChallenge?walletid=" + telegramid + "&magic=" + magic)
-	if err != nil {
-		panic(err)
+	if !*testMode {
+		if err != nil {
+			panic(err)
+		}
+	} else {
+		response.StatusCode = 202 // simulate a correct status code when in test mode
 	}
 
 	if response.StatusCode == 202 {
