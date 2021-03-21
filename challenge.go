@@ -54,7 +54,6 @@ func RefreshCurrentChallenge() {
 }
 
 func CheckChallenge(magic string) (bool, [64]byte) {
-	correct := true
 	hash := sha512.Sum512([]byte(currentChallenge.ChallengeString + magic))
 
 	stringhash := hex.EncodeToString(hash[:])
@@ -62,10 +61,10 @@ func CheckChallenge(magic string) (bool, [64]byte) {
 
 	for i := 0; i < currentChallenge.Difficulty; i++ {
 		if hexarray[i] != '0' {
-			correct = false
+			return false, hash
 		}
 	}
-	return correct, hash
+	return true, hash
 }
 
 func PeriodicChallengeRefresher() {
@@ -77,10 +76,8 @@ func PeriodicChallengeRefresher() {
 
 func PostChallengeResult(magic string, telegramid string) bool {
 	response, err := http.Get(*mineapi + "/mine/resultChallenge?walletid=" + telegramid + "&magic=" + magic)
-	if !*testMode {
-		if err != nil {
-			panic(err)
-		}
+	if !*testMode && err != nil {
+		panic(err)
 	} else {
 		response.StatusCode = 202 // simulate a correct status code when in test mode
 	}
