@@ -21,7 +21,7 @@ var currentChallenge ChallengeApiResponse
 func GetMiningData() ChallengeApiResponse {
 	resp, err := http.Get(*mineapi + "/mine/getChallenge")
 	if err != nil {
-		panic(err)
+		panic("Error in GetMiningData:\n" + err.Error())
 	}
 
 	body, _ := ioutil.ReadAll(resp.Body)
@@ -77,7 +77,7 @@ func PeriodicChallengeRefresher() {
 func PostChallengeResult(magic string, telegramid string) bool {
 	response, err := http.Get(*mineapi + "/mine/resultChallenge?walletid=" + telegramid + "&magic=" + magic)
 	if !*testMode && err != nil {
-		panic(err)
+		panic("Error in PostChallengeResult():\n" + err.Error())
 	} else {
 		response.StatusCode = 202 // simulate a correct status code when in test mode
 	}
