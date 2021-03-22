@@ -82,5 +82,6 @@ func main() {
 		magicResult := <-result
 		fmt.Println("Found a valid magic number, ", magicResult)
 		PostChallengeResult(magicResult, *minerid)
+		time.Sleep(1 * time.Second) // sleep to avoid 503
 	}
 }
