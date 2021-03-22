@@ -60,7 +60,8 @@ func main() {
 	flag.Parse()
 
 	if (*mineapi == "" || *minerid == "") && !*testMode { // ignore checks if in test mode
-		panic("--help for help")
+		fmt.Println("--help for help")
+		return
 	}
 
 	result := make(chan string)
