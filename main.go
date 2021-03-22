@@ -28,8 +28,6 @@ var correctCounter *ratecounter.RateCounter
 //
 
 func MinerThread(result chan string) {
-	rand.Seed(time.Now().UnixNano())
-
 	for {
 		magic := strconv.Itoa(rand.Int()) + strconv.Itoa(rand.Int())
 		valid, _ := CheckChallenge(magic)
@@ -56,6 +54,8 @@ func CounterPrinter() {
 func main() {
 	hashCounter = ratecounter.NewRateCounter(1 * time.Second)
 	correctCounter = ratecounter.NewRateCounter(1 * time.Hour)
+
+	rand.Seed(time.Now().UnixNano())
 
 	flag.Parse()
 
