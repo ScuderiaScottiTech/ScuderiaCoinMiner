@@ -70,6 +70,7 @@ func main() {
 
 	for i := 0; i < *goroutines; i++ {
 		fmt.Println("Spawning goroutine")
+		time.Sleep(1500 * time.Millisecond)
 		go MinerThread(result)
 	}
 
