@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"time"
 )
@@ -22,6 +23,12 @@ func GetMiningData() ChallengeApiResponse {
 	resp, err := http.Get(*mineapi + "/mine/getChallenge")
 	if err != nil {
 		panic(err)
+	}
+
+	if resp.StatusCode != 200 {
+		log.Println("Server returned %d, pausing for a few seconds to avoid rate limits...")
+		time.Sleep(3 * time.Second)
+		return currentChallenge
 	}
 
 	body, _ := ioutil.ReadAll(resp.Body)
