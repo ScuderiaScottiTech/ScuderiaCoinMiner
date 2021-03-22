@@ -26,7 +26,7 @@ func GetMiningData() ChallengeApiResponse {
 	}
 
 	if resp.StatusCode != 200 {
-		log.Println("Server returned %d, pausing for a few seconds to avoid rate limits...")
+		log.Println(fmt.Sprintf("Server returned %d (%v), pausing for a few seconds to avoid rate limits...", resp.StatusCode, resp.Status))
 		time.Sleep(3 * time.Second)
 		return currentChallenge
 	}
