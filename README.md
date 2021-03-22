@@ -21,6 +21,8 @@ Usage of ./ScuderiaCoinMiner:
         YOUR telegram ID
   -ratecounter
         Rate counter enabled (may degrade performance)
+  -testmode
+        Test your hash rate without the use of an API
 ```
 
 *__NOTE:__ Goroutines ARE NOT threads*
@@ -30,6 +32,7 @@ Usage of ./ScuderiaCoinMiner:
 ```bash
 ./ScuderiaCoinMiner -api https://mineapi.scuderia.tech -ratecounter -id <tuoid> -goroutines 6
 ```
+_**NOTE:** https://mineapi.scuderia.tech is the **official api** for the token_
 
 Example output:
 ```
