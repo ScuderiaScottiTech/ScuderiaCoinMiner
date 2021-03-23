@@ -40,3 +40,7 @@ How to contribute to Scuderia Coin Miner!
 
 12) Write the title and a comment and finally click the green button to create the pull request
 ![image](https://user-images.githubusercontent.com/49525225/112158787-cc3aa100-8be8-11eb-89e5-3d12c701c789.png)
+
+13) Extra, sync your local repository with your github fork with:
+  <code>git pull origin branch_name</code><br>
+  The branch_name is the name that you selected in step 5
