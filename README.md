@@ -4,6 +4,14 @@
 ![](https://img.shields.io/github/v/tag/ScuderiaScottiTech/ScuderiaCoinMiner)
 ![](https://img.shields.io/github/workflow/status/ScuderiaScottiTech/ScuderiaCoinMiner/goreleaser?label=Releaser)
 
+## Installation / Building
+
+By running the following command you'll be able to get an executable file built by yourself for your OS.
+
+```bash
+go build .
+```
+
 ## Usage
 
 By running the following command you'll be able to get a brief explainaion of all the parameters you can set on your miner
