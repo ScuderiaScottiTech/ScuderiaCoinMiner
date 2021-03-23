@@ -30,7 +30,7 @@ Usage of ./ScuderiaCoinMiner:
 ### Example usage
 
 ```bash
-./ScuderiaCoinMiner -api https://mineapi.scuderia.tech -ratecounter -id <tuoid> -goroutines 6
+./ScuderiaCoinMiner -api https://mineapi.scuderia.tech -ratecounter -id <yourtelegramid> -goroutines 6
 ```
 _**NOTE:** https://mineapi.scuderia.tech is the **official api** for the token_
 
