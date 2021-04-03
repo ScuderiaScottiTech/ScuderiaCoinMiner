@@ -27,9 +27,12 @@ var correctCounter *ratecounter.RateCounter
 // MINER GOROUTINE
 //
 
-func MinerThread(result chan string) {
+func MinerThread(result chan string, offset uint64) {
+	fmt.Println("Starting with offset", offset)
+
 	for {
-		magic := strconv.Itoa(rand.Int()) + strconv.Itoa(rand.Int())
+		offset++
+		magic := strconv.FormatUint(offset, 10)
 		valid, _ := CheckChallenge(magic)
 
 		if *ratecounterenabled {
@@ -72,7 +75,9 @@ func main() {
 	for i := 0; i < *goroutines; i++ {
 		fmt.Println("Spawning goroutine")
 		time.Sleep(1500 * time.Millisecond)
-		go MinerThread(result)
+
+		offset := rand.Uint64()
+		go MinerThread(result, offset)
 	}
 
 	if *ratecounterenabled {
